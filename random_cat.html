@@ -1,0 +1,90 @@
+<!Doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Random Catto</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+        <style type="text/css">
+            body {
+                background-color: bisque;
+            }
+
+            img {
+                max-width: 700px;
+                max-height: 700px;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            button {
+            background-color: #c7cfff;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+            }
+
+
+        </style>
+
+        <script>
+
+            function showCat() {
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.thecatapi.com/v1/images/search",
+                    data: {},
+                    success: function (response) {
+                        $("#img-cat").attr("src", response[0]['url']);
+
+                    }
+                })
+            }
+
+            function showDog() {
+                $.ajax({
+                    type: "GET",
+                    url: "https://dog.ceo/api/breeds/image/random",
+                    data: {},
+                    success: function (response) {
+                        $("#img-dog").attr("src", response['message']);
+
+                    }
+                })
+            }
+        </script>
+
+
+    </head>
+    <body>
+        <h1>Random cat pics... oh and dogs too...</h1>
+
+        <hr>
+
+        <div class="question-box">
+
+            <button onclick="showCat()">Gimme a catto...</button>
+            <div>
+                <img id="img-cat"
+                     src="https://cdn.shopify.com/s/files/1/2158/0281/products/product-image-731314663.jpg?v=1575938488"/>
+            </div>
+        </div>
+<hr>
+
+        <button onclick="showDog()">Gimme a doggo...</button>
+        <div>
+            <img id="img-dog" src="https://i.pinimg.com/564x/51/67/b6/5167b6f7d4edd024a02793a81a9071be.jpg"/>
+
+
+        </div>
+
+
+    </body>
+</html>
